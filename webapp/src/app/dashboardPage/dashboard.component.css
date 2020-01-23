@@ -1,0 +1,153 @@
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.selection {
+  display: flex;
+  align-items: center;
+}
+.selection label {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.selection .selected {
+  color: #2196F3;
+}
+
+
+.filterButton {
+  color: #616161;
+  position: absolute;
+  left: 2rem;
+  background: transparent;
+}
+
+.filters.popover {
+  position: absolute;
+  background: white;
+  padding: 1rem;
+  left: 2rem;
+  top: 7rem;
+  border: 1px solid;
+  z-index: 5;
+}
+.submission {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+#map {
+  background: black;
+  height: calc(100vh - 190px - 2rem);
+  width: calc(50% - 1rem);
+}
+
+.result-list-container {
+  width: 100vw;
+  padding: 2rem;
+}
+
+.result-list {
+  margin-left: 2rem;
+  height: calc(100vh - 190px - 2rem);
+  width: calc(50% - 1rem);
+  overflow: auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.result {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+}
+
+.result:hover * {
+  color: #0065A3;
+}
+
+.result:hover div b svg {
+  color: #0065A3;
+  fill: #0065A3;
+}
+
+.result div b svg {
+  margin-right: 0.5rem;
+}
+.result > div:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.result:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.result .index {
+  background: #0065A3;
+  color: white;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}

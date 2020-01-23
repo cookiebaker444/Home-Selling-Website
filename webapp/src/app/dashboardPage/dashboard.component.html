@@ -1,0 +1,65 @@
+<button class="filterButton" *ngIf="submitted" (click)="showFilter = !showFilter">
+  <i class="fas fa-filter"></i>
+</button>
+
+<div [hidden]="!showFilter" class="filters" [ngClass]="{popover: submitted}">
+  <h2>
+    Please answer following questions
+  </h2>
+
+  <div *ngFor="let question of QUESTION_LIST | keyvalue">
+    <h3>
+      {{question.value.name}}
+    </h3>
+    <div class="selection">
+      <span>No</span>
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="filters[question.key]">
+        <span class="slider round"></span>
+      </label>
+      <span>Yes</span>
+    </div>
+  </div>
+
+  <div class="submission">
+    <button (click)="submit()">
+      Submit
+    </button>
+  </div>
+</div>
+
+<div *ngIf="loadingResults">
+  <i class="fas fa-sync-alt fa-spin"></i>
+</div>
+<div class="result-list-container" [hidden]="!submitted || loadingResults">
+  <h3>
+    Here's the results we found:
+  </h3>
+
+  <div style="display: flex">
+    <div id="map"></div>
+
+    <div class="result-list">
+      <div class="result"
+           *ngFor="let result of results | slice:0:viewLimit ; index as index"
+           (click)="setMapCenter(result)">
+        <div class="index">{{index + 1}}</div>
+        <div>
+          <div>
+            <div>{{ result.address }}</div>
+            <div>{{result.city}}, {{ result.state }} {{ result.zipCode }}</div>
+          </div>
+          <div><b title="Park"><i class="fas fa-leaf"></i></b> {{ result.distanceFromParks | number: '1.0-2' }}<i>mi away</i></div>
+          <div><b title="Whole Food"><i class="fas fa-shopping-cart"></i></b> {{ result.distanceFromWholeFoods | number: '1.0-2' }}<i>mi away</i></div>
+          <div><b title="Public Transportation"><i class="fas fa-bus"></i></b> {{ result.distanceFromPublicTransportation | number: '1.0-2' }}<i>mi away</i></div>
+          <div><b title="Number of Rooms"><i class="fas fa-bed"></i></b> {{ result.numberOfRooms }} room</div>
+          <div><b title="Footage"><i class="fas fa-shoe-prints"></i></b> {{ result.squareFeet | number: '1.0-2' }} sq ft.</div>
+          <div><b>${{ result.price | number: '1.0-2' }}</b></div>
+        </div>
+      </div>
+      <button *ngIf="viewLimit < results.length" (click)="increaseLimit()">
+        View More
+      </button>
+    </div>
+  </div>
+</div>
