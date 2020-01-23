@@ -1,0 +1,5 @@
+flask
+zappa
+flask_cors
+mysql.connector
+credentials
